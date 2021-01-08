@@ -70,11 +70,11 @@ Se si desidera applicare il **cutset conditioning** ad un grafo non casuale sar√
         }
   g1=Graph(graph1)
   ```
-* **Disegnare** il grafo con la libreria inizializzata precedentemente `%matplotlib qt`, il 'False' indica che **non** stiamo richiedendo il **map_coloring**:
+* **Disegnare** il grafo con la libreria inizializzata precedentemente `%matplotlib qt`, il ```False``` indica che **non** stiamo richiedendo il **map_coloring**:
   ```python
   exercise.draw_graph(graph1, False)
   ```
-* **Controllare** se ci sono cicli e quindi **creare** un grafo dopo il taglio, sempre mettendo 'False' nell'argomento:
+* **Controllare** se ci sono cicli e quindi **creare** un grafo dopo il taglio, sempre mettendo ```False``` nell'argomento:
   ```python
   g1.isCyclic(False)
   ```
