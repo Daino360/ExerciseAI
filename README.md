@@ -1,7 +1,7 @@
 # ExerciseAI
 
-In questo esercizio si implementa la tecnica cutset conditioning.
-Inoltre nell’esercizio si applica l’algoritmo al problema map-coloring generando mappe casuali
+In questo esercizio si implementa la tecnica **cutset conditioning**.
+Inoltre nell’esercizio si applica l’algoritmo al problema **map-coloring** generando mappe casuali
 
 ## 1 - Parti del lavoro riprese da altre fonti
 Non avendo mai utilizzato il codice Python, ho deciso di scrivere il codice con questo linguaggio.
@@ -78,7 +78,7 @@ Se si desidera applicare il **cutset conditioning** ad un grafo non casuale sar�
   ```python
   g1.isCyclic(False)
   ```
-  Questo ci renderà in output lo stesso [risultato](https://github.com/Daino360/ExerciseAI/blob/main/README.md#come-utilizzare-il-codice) visto prima
+  Questo ci renderà in output lo stesso [risultato](https://github.com/Daino360/ExerciseAI/blob/main/README.md#2---come-utilizzare-il-codice) visto prima
   
 Se si desidera invece applicare la tecnica del **map_coloring**:
 Dopo aver importato *exercise* già precedentemente
