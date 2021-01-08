@@ -89,7 +89,7 @@ Dopo aver importato *exercise* già precedentemente
   ```
   Questo renderà come output:
   
-  *{'a': 1, 'b': 2, 'c': 3, 'd': 2, 'e': 1, 'f': 1, 'g': 1}*
+  ```{'a': 1, 'b': 2, 'c': 3, 'd': 2, 'e': 1, 'f': 1, 'g': 1}```
   
   Dove ad ogni vertice viene assegnato un colore in modo tale che non si abbia due vertici connessi dello stesso colore
 
