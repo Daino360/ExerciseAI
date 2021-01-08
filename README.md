@@ -18,6 +18,7 @@ https://www.python-course.eu/networkx.php
 Per poter trovare se ci sono cicli all'interno del grafo:
 
 https://www.geeksforgeeks.org/detect-cycle-undirected-graph/
+
 Quest' ultimo algoritmo trovava solamente se erano presenti cicli, io l'ho riadattato per far si che trovasse anche il percorso dei cicli e ritornasse poi tutti i cicli.
 
 Infine, per il map-coloring:
