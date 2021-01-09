@@ -45,7 +45,7 @@ import exercise
   ```
     
 * Per il **map coloring**:
-  In questo caso è necessario introdurre il **numero di colori** come altro input da tastiera. Questo viene sovrstato dalla finestra che si andrà a creare. Messo in input il       numero dei colori, si ha come output lo stesso che per il cutset **conditioning**, con l'aggiunta di un dizionario, dove per ogni nodo sono specificati dei numeri che indicano   dei colori, diversi per nodi connessi. Per esempio:
+  In questo caso è necessario introdurre il **numero di colori** come altro input da tastiera. L'input viene coperto dalla finestra che si andrà a creare. Messo in input il       numero dei colori, si ha come output lo stesso che per il **cutset conditioning**, con l'aggiunta di un dizionario, dove per ogni vertice sono specificati dei numeri che         indicano dei colori, diversi per nodi connessi. Per esempio:
   ```
     {'f1H': 1, 'M4j': 1, 'T4O': 1, 'J2o': 2, 'b8Q': 1, 'k3Z': 1, 'U8n': 2}
   ```
