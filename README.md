@@ -1,7 +1,7 @@
 # ExerciseAI
 
 In questo esercizio si implementa la tecnica **cutset conditioning**.
-Inoltre nell’esercizio si applica l’algoritmo al problema **map-coloring** generando mappe casuali
+Inoltre nell’esercizio si applica l’algoritmo al problema **map coloring** generando mappe casuali
 
 ## 1 - Parti del lavoro riprese da altre fonti
 Non avendo mai utilizzato il codice Python, ho deciso di scrivere il codice con questo linguaggio.
