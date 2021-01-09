@@ -31,14 +31,12 @@ Per inizializzare il codice su *Jupyter Notebook* si importa il file *exercise.p
 ```python 
 %matplotlib qt
 import exercise
-``` 
-Dopodichè verrà chiesto di mettere in input **1** per il **cutset conditioning**, **2** per il **map coloring**
- 
+```  
 * Per l'algoritmo **cutset conditioning**:
   Il codice crea un grafo casuale con un numero di vertici che va da 4 a 15, un numero di archi minore di 20 e poi trova il vertice da tagliare, dando come output per esempio:
   ```
     The GRAPH is:
-    {'a': ['b', 'c', 'd'], 'b': ['c', 'g'], 'c': ['b', 'd', 'f'], 'd': ['c', 'e'], 'e': ['d'], 'f': ['c'], 'g': ['b']}
+    {'a': ['b', 'c', 'd'], 'b': ['a','c', 'g'], 'c': ['a','b', 'd', 'f'], 'd': ['a','c', 'e'], 'e': ['d'], 'f': ['c'], 'g': ['b']}
     -------------------------------------------------
     The vertex that must be cut is a
     -------------------------------------------------
@@ -47,7 +45,7 @@ Dopodichè verrà chiesto di mettere in input **1** per il **cutset conditioning
   ```
     
 * Per il **map coloring**:
-  Dopo aver messo in input il valore **2** per il **map coloring**, è necessario introdurre il **numero di colori** come altro input da tastiera. Questo viene sovrstato dalla finestra che si andrà a creare. Messo in input il numero dei colori, si ha come output lo stesso che per il cutset **conditioning**, con l'aggiunta di un dizionario, dove per ogni nodo sono specificati dei numeri che indicano dei colori, diversi per nodi connessi. Per esempio:
+  In questo caso è necessario introdurre il **numero di colori** come altro input da tastiera. Questo viene sovrstato dalla finestra che si andrà a creare. Messo in input il       numero dei colori, si ha come output lo stesso che per il cutset **conditioning**, con l'aggiunta di un dizionario, dove per ogni nodo sono specificati dei numeri che indicano   dei colori, diversi per nodi connessi. Per esempio:
   ```
     {'f1H': 1, 'M4j': 1, 'T4O': 1, 'J2o': 2, 'b8Q': 1, 'k3Z': 1, 'U8n': 2}
   ```
