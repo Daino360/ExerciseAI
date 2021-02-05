@@ -11,7 +11,7 @@ Per rappresentare il grafo come dizionario, usare alcune semplici sue funzioni e
 
 https://www.python-course.eu/graphs_python.php
 
-Per disegnare il grafo e il grafo tagliato ho utilizzato il seguente link e la documentazione necessaria per NetworkX:
+Per disegnare il grafo ho utilizzato il seguente link e la documentazione necessaria per NetworkX:
 
 https://www.python-course.eu/networkx.php
 
@@ -19,89 +19,76 @@ Per poter trovare se ci sono cicli all'interno del grafo:
 
 https://www.geeksforgeeks.org/detect-cycle-undirected-graph/
 
-Quest' ultimo algoritmo trovava solamente se erano presenti cicli, io l'ho riadattato per far si che trovasse anche il percorso dei cicli e ritornasse poi tutti i cicli.
-
-Infine, per il map-coloring:
-
-https://github.com/jaymeliao/CSP-MapColoring
-
-
 ## 2 - Come utilizzare il codice
-Per inizializzare il codice su *Jupyter Notebook* si importa il file *exercise.py*
+Per inizializzare il codice su *Jupyter Notebook* si importa il file *exerciseAI.py*
 ```python 
 %matplotlib qt
-import exercise
+import exerciseAI
 ```  
-* Per l'algoritmo **cutset conditioning**:
-  Il codice crea un grafo casuale con un numero di vertici che va da 4 a 15, un numero di archi minore di 20 e poi trova il vertice da tagliare, dando come output per esempio:
-  ```
-    The GRAPH is:
-    {'a': ['b', 'c', 'd'], 'b': ['a','c', 'g'], 'c': ['a','b', 'd', 'f'], 'd': ['a','c', 'e'], 'e': ['d'], 'f': ['c'], 'g': ['b']}
-    -------------------------------------------------
-    The vertex that must be cut is a
-    -------------------------------------------------
-    The CUT GRAPH is: 
-    {'a': [], 'b': ['c', 'g'], 'c': ['b', 'd', 'f'], 'd': ['c', 'e'], 'e': ['d'], 'f': ['c'], 'g': ['b']}
-  ```
-    
-* Per il **map coloring**:
-  In questo caso è necessario introdurre il **numero di colori** come altro input da tastiera. L'input viene coperto dalla finestra che si andrà a creare. Messo in input il       numero dei colori, si ha come output lo stesso che per il **cutset conditioning**, con l'aggiunta di un dizionario, dove per ogni vertice sono specificati dei numeri che         indicano dei colori, diversi per nodi connessi. Per esempio:
-  ```
-    {'f1H': 1, 'M4j': 1, 'T4O': 1, 'J2o': 2, 'b8Q': 1, 'k3Z': 1, 'U8n': 2}
-  ```
-
 ### 2.1 - Grafi non casuali
-Se si desidera applicare il **cutset conditioning** ad un grafo non casuale sarà necessario quindi:
-* **Importare** *Graph* da *exercise* 
-  ```python
-  from exercise import Graph
-  ```
-* **Immettere** il grafo al quale si desidera applicare il cutset conditioning e **creare** l'oggetto del grafo:
-  ```python
-  graph1 = { "a" : ["b","c","d"],
-          "b" : ["a", "c","g"],
-          "c" : ["a", "b", "d", "f"],
-          "d" : ["a","c","e"],
-          "e" : ["d"],
-          "f" : ["c"],
-          "g" : ["b"]
-        }
-  g1=Graph(graph1)
-  ```
-* **Disegnare** il grafo con la libreria inizializzata precedentemente `%matplotlib qt`, il ```False``` indica che **non** stiamo richiedendo il **map_coloring**:
-  ```python
-  exercise.draw_graph(graph1, False)
-  ```
-* **Controllare** se ci sono cicli e quindi **creare** un grafo dopo il taglio, sempre mettendo ```False``` nell'argomento:
-  ```python
-  g1.isCyclic(False)
-  ```
-  Questo ci renderà in output lo stesso [risultato](https://github.com/Daino360/ExerciseAI/blob/main/README.md#2---come-utilizzare-il-codice) visto prima
-  
-Se si desidera invece applicare la tecnica del **map_coloring**:
-Dopo aver importato *exercise* già precedentemente
+Se si desidera applicare il **cutset conditioning** ad un grafo non casuale sarà necessario, dopo aver importato `exerciseAI` e aver inizializzato `%matplotlib qt`:
 
-* **Digitare** *exercise.map_coloring* e tra parentesi immettere il grafo, il numero di colori che si vuole utilizzare e il nodo da tagliare che si trova con `g1.isCyclic(False)`, come per esempio:
+* **Immettere** il grafo al quale si desidera applicare l'algoritmo:
   ```python
-  exercise.map_coloring(graph1, 3, "a")
+  graph3colors = {'a': ['e', 'b'], 
+  'b': ['c', 'a'],
+  'c': ['b', 'f'],
+  'd': ['g','f'],
+  'e': ['a', 'f', 'g'],
+  'f': ['e', 'c','d'],
+  'g': ['d', 'e']
+  }
+  ```
+
+* **Disegnare** il grafo con la libreria inizializzata precedentemente `%matplotlib qt`:
+  ```python
+  exerciseIA.draw_graph(graph3colors)
+  ```
+* **Applicare** l'algoritmo **cutset conditioning**, che taglia il grafo se presenta dei cicli:
+  ```python
+  exerciseIA.cutset_conditioning(graph3colors)
+  ```
+  Questo ci renderà in output:
+  ```
+    The graph is {'a': ['e', 'b'], 'b': ['c', 'a'], 'c': ['b', 'f'], 'd': ['g', 'f'], 'e': ['a', 'f', 'g'], 'f': ['e', 'c', 'd'], 'g': ['d', 'e']}
+    -------------------------------------------------------------------------------------------------
+    The cutset part is: {'e': []}
+    -------------------------------------------------------------------------------------------------
+    The topological sort is: {'e': ['a', 'f', 'g'], 'a': ['b'], 'f': ['c', 'd'], 'g': ['d'], 'b': ['c'], 'c': [], 'd': []}
+    The color of each node is: {'e': '1', 'a': '2', 'f': '2', 'g': '2', 'b': '1', 'c': '3', 'd': '1'}
+  ```
+  
+Successivamente, per applicare la tecnica del **map_coloring**:
+
+* **Inizializzare** *tp_sort* con l'ordine topologico trovato al passo precedente e **chiamare** `tree_solver(tp_sort,numero_colori)`,inserendo il numero di colori con il quale si vuole colorare il grafo. Per esempio:
+  ```python
+  tp_sort = {'e': ['a', 'f', 'g'],
+   'a': ['b'],
+   'f': ['c', 'd'],
+   'g': ['d'],
+   'b': ['c'],
+   'c': [],
+   'd': []}
+  exerciseIA.tree_solver(tp_sort, 3)
   ```
   Questo renderà come output:
   
   ```
-  {'a': 1, 'b': 2, 'c': 3, 'd': 2, 'e': 1, 'f': 1, 'g': 1}
+  The color of each node is: {'e': '1', 'a': '2', 'f': '2', 'g': '2', 'b': '1', 'c': '3', 'd': '1'}
   ```
-  
   Dove ad ogni vertice viene assegnato un colore in modo tale che non si abbia due vertici connessi dello stesso colore
 
 ### 2.2 - Grafi casuali con un numero di nodi dato in input
-Infine è possibile generare grafi casuali con un numero di vertici dato in input. Questo funziona solo se il numero dei vertici è minore o uguale a 20.
-E' possibile applicare sia il **cutset conditioning** sia il **map coloring** al grafo che si creerà casualmente. 
-
-Per avere il **cutset conditioning**:
+Per generare grafi casuali, si chiama la funzione:
 ```python
-exercise.generate_graph(7, False)
+exerciseAI.generate_graph(numero_vertici)
 ```
-Per il **map coloring**
-```python
-exercise.generate_graph(7, True)
-```
+e il codice crea un grafo casuale con il numero di vertici dato in input e un numero di archi minore di 20. Dopodichè viene chiesto di immettere in input il numero di colori da utilizzare per colorare i nodi (`How many colors?`). Infine, trova i vertici da tagliare e colora il grafo partendo dai nodi del taglio, dando come output per esempio:
+  ```
+    The graph is {'a': ['e', 'b'], 'b': ['c', 'a'], 'c': ['b', 'f'], 'd': ['g', 'f'], 'e': ['a', 'f', 'g'], 'f': ['e', 'c', 'd'], 'g': ['d', 'e']}
+    -------------------------------------------------------------------------------------------------
+    The cutset part is: {'e': []}
+    -------------------------------------------------------------------------------------------------
+    The topological sort is: {'e': ['a', 'f', 'g'], 'a': ['b'], 'f': ['c', 'd'], 'g': ['d'], 'b': ['c'], 'c': [], 'd': []}
+    The color of each node is: {'e': '1', 'a': '2', 'f': '2', 'g': '2', 'b': '1', 'c': '3', 'd': '1'}
+  ```
